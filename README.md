@@ -1,37 +1,62 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+## Lab 32 Dynamic Forms with Redux
 
-### Author: Student/Group Name
+### Author: Kevin O'Halloran
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com)
-* [front-end](http://xyz.com)
+* [repo](https://github.com/Kevinoh47/lab-32/blob/master/LAB.md)
+* [codesandbox](https://codesandbox.io/s/3y1zo5zlzm)
+
 
 ### Modules
-#### `modulename.js`
+#### `app.js`
 ##### Exported Values and Methods
+The /src/components/App.js component exports the App.
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+It contains showRecords() and render() functions.
 
-###### `bar(array) -> array`
-Usage Notes or examples
+The showRecords() function modifies local state, setting the model based on user input.
+
+The render function returns the main application form, including some conditional logic for whether the RecordList is displayed.
+
+#### `record.js`
+##### Exported Values and Methods
+The /src/components/record/record.js builds and exports a generic Records class, for rendering records of both schemas. It uses react-jsonschema-form to help build the form based on whichever schema model is passed iin. 
+
+It also has a handleSubmit method for posting new records, and modifying current records.
+
+#### `index.js  Redux store`
+##### Exported Values and Methods
+The /src/store/index.js file builds and exports the Redux store. It uses a reducers variable to pull in the records reducer for state management. 
+
+#### `list.js`
+##### Exported Values and Methods
+The /src/components/record/lists.js file builds and exports the Records class for listing out all the records of whichever schema model is passed in. It contains deleteRecord(), editRecord(), reset(), and render() methods. DeleteRecord interacts with  MapDispatchToProps to connect to the store.
+
+#### `actions.js`
+##### Exported Values and Methods
+The /src/components/record/actions.js exports a set of standard action methods: post, destroy, get, put, and patch.
+
+#### `reducers.js`
+##### Exported Values and Methods
+The /src/components/record/reducers.js file defines a function that handles state for the various actions, pulling out the type, playload, and from payload, the id, model, and record data, that are supplied by the action. It returns the appropriate object containing state, model, and record to operate on. It also defines the initial state. 
+
+#### `if.js - Main`
+##### Exported Values and Methods
+The /src/components/if.js file defines an If component for managing conditional display of other items. When the if component wraps another component with a valid boolean test, that other component will either display or not.
+
+#### `index.js - Main`
+##### Exported Values and Methods
+The src/index.js file is the point of entry to the application, creating a function Main() which returns the app, wrapped by the <Provider /> component from react-redux, making the store availabe for state management to all child components.
+
 
 ### Setup
-#### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+* Endpoint: `https://3y1zo5zlzm.codesandbox.io/`
+
 
 #### Tests
 * How do you run tests?
